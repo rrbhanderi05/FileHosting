@@ -1,166 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
-  
 <head>
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Business Listing Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* Styling the body */
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
+    body {
+      background-color: #f0f2f5;
+      padding: 20px;
+    }
 
-        /* Styling the first parallax's 
-        height, width and background color */
-        .parallax-1 {
-            width: 100%;
-            height: 600px;
-            background: url(
-'https://media.geeksforgeeks.org/wp-content/uploads/20210402175040/back22.jpg');
-            background-size: 100% 100%;
-            background-attachment: fixed;
-        }
+    #signInContainer {
+      text-align: center;
+      margin-top: 100px;
+    }
 
-        /* Styling the title of first parallax */
-        .parallax-1 h2 {
-            margin: auto;
-            position: relative;
-            left: 500x;
-            top: 300px;
-            width: 250px;
-            height: 32px;
-            padding: 10px;
-            background-color: black;
-            color: white;
-            text-align: center;
-        }
+    #signInBtn {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
 
-        /* Styling the second parallax's 
-        height, width and background color */
-        .parallax-2 {
-            width: 100%;
-            height: 600px;
-            background: url(
-'https://media.geeksforgeeks.org/wp-content/uploads/20210402175040/back22.jpg');
-            background-size: 100% 100%;
-            background-attachment: fixed;
-        }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: none;
+    }
 
-        /* Styling the title of second parallax */
-        .parallax-2 h2 {
-            margin: auto;
-            position: relative;
-            left: 500x;
-            top: 300px;
-            width: 250px;
-            height: 37px;
-            padding: 10px;
-            background-color: white;
-            color: black;
-            text-align: center;
-            font-size: 30px;
-            font-family: Verdana;
-        }
+    .step {
+      display: none;
+      padding: 30px;
+      transition: all 0.3s ease-in-out;
+    }
 
-        /* Styling the content or paragraph */
-        .para-1 {
-            padding: 50px;
-            background-color: black;
-            color: white;
-            font-size: 17px;
-        }
+    .step.active {
+      display: block;
+    }
 
-        /* Styling the content or paragraph */
-        .para-2 {
-            text-align: center;
-            padding: 25px;
-            font-size: 17px;
-            font-family: Verdana;
-            background-color: black;
-            color: white;
-        }
-    </style>
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .required-star {
+      color: red;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 24px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .buttons button {
+      flex: 1;
+      padding: 12px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #357bd8;
+    }
+
+    .buttons button[disabled] {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    #thankYouMessage {
+      text-align: center;
+      padding: 40px;
+    }
+
+    #thankYouMessage h2 {
+      color: #28a745;
+      margin-bottom: 10px;
+    }
+
+    #thankYouMessage button {
+      margin-top: 20px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- Giving title of the first parallax -->
-    <div class="parallax-1">
-        <h2>SUSHANT GAURAV</h2>
-    </div>
+  <div id="signInContainer">
+    <button id="signInBtn">Sign in with Google</button>
+  </div>
 
-    <!--Content of first parallax -->
-    <div class="para-1">
-        <p>
-            Thankyou for showing interest, 
-            here is a quick story of me and
-            this website. My programming 
-            journey started back in 2019, 
-            few months before I started 
-            studying CSE in LNCT Bhopal. 
-            I am currently in my second 
-            year and doing Technical 
-            Content Writing Internship
-            at GeeksForGeeks. I like 
-            coding all kind of problems 
-            from the very basic like adding 
-            numbers to the complex ones like
-            competitive programming problems.
-            I love making projects and games.
-            Infact this website is one of my 
-            Web Development Projects which 
-            is built using HTML and CSS.<br>
-            <br>Languages known : C Language, 
-            C++, JAVA, Python, JavaScript, 
-            MySQL.<br> IT Constructs : Data 
-            Structures and Algorithm, OOP, 
-            HTML, CSS, LINUX, and Git & GitHub.
-        </p>
-    </div>
+  <div class="container" id="formContainer">
+    <form id="businessForm">
 
-    <!-- Giving title of the first parallax -->
-    <div class="parallax-2">
-        <h2>PROJECTS</h2>
-    </div>
+      <!-- Step 1 -->
+      <div class="step active">
+        <h2>👤 Owner & Business</h2>
+        <label>Owner Full Name <span class="required-star">*</span></label>
+        <input type="text" name="ownerName" placeholder="e.g. Rushi Patel" required>
 
-    <!--Content of first parallax -->
-    <div class="para-2">
-        <p>
-            &nbsp; Calendar &nbsp; 
-            Tic-Tac-Toe &nbsp; 
-            Quiz Game &nbsp; 
-            Survey Form &nbsp; 
-            Chat Bot in C &nbsp; 
-            Tribute Webpage &nbsp; 
-            Portfolio Website &nbsp; 
-            Guess the Number &nbsp; 
-            Rock Paper Scissor &nbsp;
-            To-Do List using JS &nbsp; 
-            Notes Taker using JS &nbsp; 
-            BMI Calculator using JS &nbsp;
-            Loan Calculator using JS &nbsp; 
-            Travel Management System &nbsp; 
-            Random Password Generator &nbsp; 
-            Different Management Systems
-        </p>
-    </div>
+        <label>Business Title <span class="required-star">*</span></label>
+        <input type="text" name="businessTitle" placeholder="e.g. Rushi's Snacks" required>
 
-    <!--This will be same as first parallax-->
-    <div class="parallax-1">
-        <h2>ACHIEVEMENTS</h2>
-    </div>
+        <div class="buttons">
+          <button type="button" disabled>Back</button>
+          <button type="button">Next</button>
+        </div>
+      </div>
 
-    <div class="para-2">
-        <p>
-            &nbsp; Technical Content Writer 
-            Intern at GeeksForGeeks 
-            &nbsp; Microsoft Learn Student 
-            Ambassador - Beta &nbsp; 
-            Participant in GirlScript Summer 
-            of Code 2021 &nbsp; 
-            Mentored HackTX Hackathon
-        </p>
+      <!-- Step 2 -->
+      <div class="step">
+        <h2>📝 Description</h2>
+        <label>Business Description <span class="required-star">*</span></label>
+        <textarea name="description" maxlength="200" placeholder="Write something about your business..." required></textarea>
+
+        <div class="buttons">
+          <button type="button">Back</button>
+          <button type="button">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <h2>📂 Category</h2>
+        <label>Select Category <span class="required-star">*</span></label>
+        <select name="category" required>
+          <option value="">Choose one</option>
+          <option>Clothes & Fashion 👗</option>
+          <option>Imitation Jewelry 💍</option>
+          <option>Homemade Snacks & Sweets 🍪</option>
+          <option>Tiffin / Dabba Services 🍱</option>
+          <option>Beauty & Skincare Products 💄</option>
+          <option>Handicrafts & Decorative Items 🧵</option>
+          <option>Gift & Handmade Items 🎁</option>
+          <option>Stationery / Printed Items 📚</option>
+          <option>Stitching / Tailoring ✂️</option>
+          <option>Baby Care Products 🍼</option>
+          <option>Jobs 🧑‍💼</option>
+        </select>
+
+        <div class="buttons">
+          <button type="button">Back</button>
+          <button type="button">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step">
+        <h2>📞 Contact Info</h2>
+        <label>Contact Number <span class="required-star">*</span></label>
+        <input type="tel" name="contact" placeholder="e.g. 9876543210" required>
+
+        <label>WhatsApp Number (optional)</label>
+        <input type="tel" name="whatsapp" placeholder="e.g. 9876543210">
+
+        <div class="buttons">
+          <button type="button">Back</button>
+          <button type="button">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step">
+        <h2>📍 Address</h2>
+        <label>Block No. & Society <span class="required-star">*</span></label>
+        <input type="text" name="house" placeholder="e.g. 12, Shree Krishna Society" required>
+
+        <label>Landmark / Reference <span class="required-star">*</span></label>
+        <input type="text" name="reference" placeholder="e.g. Opp. GETCO or Near Railway Station" required>
+
+        <label>Area <span class="required-star">*</span></label>
+        <input type="text" name="area" placeholder="e.g. Bhojal Para" required>
+
+        <div class="buttons">
+          <button type="button">Back</button>
+          <button type="button">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="step">
+        <h2>📸 Upload Images</h2>
+        <label>Upload up to 3 images (3MB max each)</label>
+        <input type="file" name="images" accept="image/*" multiple>
+
+        <div class="buttons">
+          <button type="button">Back</button>
+          <button type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="thankYouMessage" style="display: none;">
+      <h2>✅ Thank You!</h2>
+      <p>Your business has been listed successfully.</p>
+      <button onclick="location.reload()">Submit Another Response</button>
     </div>
+  </div>
+
+<!-- Firebase App (core) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<!-- Firebase Auth -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<!-- Firebase Firestore -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+// Your Firebase config (replace with your config)
+const firebaseConfig = {
+  apiKey: "AIzaSyA_GMkTyMO5C-vver8oMOG83PA2xYW0O8M",
+  authDomain: "nedlo-st.firebaseapp.com",
+  projectId: "nedlo-st",
+  storageBucket: "nedlo-st.firebasestorage.app",
+  messagingSenderId: "518658480638",
+  appId: "1:518658480638:web:f470f8c21b1ea9e5e588af",
+  measurementId: "G-54Z1TG09MP"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+const signInBtn = document.getElementById('signInBtn');
+const signInContainer = document.getElementById('signInContainer');
+const formContainer = document.getElementById('formContainer');
+const steps = document.querySelectorAll('.step');
+const nextButtons = document.querySelectorAll('.step .buttons button:nth-child(2)');
+const backButtons = document.querySelectorAll('.step .buttons button:nth-child(1)');
+const form = document.getElementById('businessForm');
+const thankYouMessage = document.getElementById('thankYouMessage');
+
+let currentStep = 0;
+
+// Google Sign-In with popup
+signInBtn.addEventListener('click', () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider)
+    .then(result => {
+      // User signed in
+      signInContainer.style.display = 'none';
+      formContainer.style.display = 'block';
+      console.log("Signed in as:", result.user.displayName);
+    })
+    .catch(error => {
+      alert("Error signing in: " + error.message);
+    });
+});
+
+// Navigation buttons logic
+nextButtons.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    if (!validateStep(index)) return;
+    steps[currentStep].classList.remove('active');
+    currentStep++;
+    steps[currentStep].classList.add('active');
+  });
+});
+
+backButtons.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    steps[currentStep].classList.remove('active');
+    currentStep--;
+    steps[currentStep].classList.add('active');
+  });
+});
+
+function validateStep(index) {
+  const inputs = steps[index].querySelectorAll('input, textarea, select');
+  for (let input of inputs) {
+    if (input.hasAttribute('required') && !input.value.trim()) {
+      alert(`Please fill out: ${input.previousElementSibling?.innerText || input.name}`);
+      input.focus();
+      return false;
+    }
+  }
+  return true;
+}
+
+// Form submit - save data to Firestore
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Prepare data object
+  const formData = {
+    ownerName: form.ownerName.value.trim(),
+    businessTitle: form.businessTitle.value.trim(),
+    description: form.description.value.trim(),
+    category: form.category.value,
+    contact: form.contact.value.trim(),
+    whatsapp: form.whatsapp.value.trim(),
+    house: form.house.value.trim(),
+    reference: form.reference.value.trim(),
+    area: form.area.value.trim(),
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    user: auth.currentUser.uid,
+    userName: auth.currentUser.displayName,
+    userEmail: auth.currentUser.email,
+  };
+
+  try {
+    await db.collection('businessListings').add(formData);
+    form.style.display = 'none';
+    thankYouMessage.style.display = 'block';
+  } catch (error) {
+    alert('Error saving data: ' + error.message);
+  }
+});
+</script>
 </body>
-  
 </html>
